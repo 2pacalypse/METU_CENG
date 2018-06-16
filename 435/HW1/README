@@ -1,0 +1,44 @@
+To reproduce the experiments
+1) Put client.py to U1, T1
+2) Put router.py to U2, T2,Gateway
+3) Put server.py to U3, T3
+4) In all of the files, change the 'node = ' line at the beginning.
+   - T1, T2, T3 = 2, 4, 6
+   - U1, U2, U3 = 1, 3, 5
+   - Gateway = 0
+   
+   For example, router.py in Gateway must have its node = 0.
+                server.py in T3 must have its node = 6
+				client.py in U1 must have its node = 1
+				..
+				..
+				..
+5) Run all the routers and the servers.
+	e.g python U2.py
+	    python server.py
+		python gateway.py
+		
+6) Run the client at last.
+	6.a) If you want experiments 1,2 to happen
+	     you should go to the machine T1 and run
+		 > python T1.py T3
+		 or
+		 > python T1.py U3
+		 
+		 You may want to redirect the output of T1.py
+		 because end to end delays get printed to the console.
+		 
+		 
+    6.b) If you want experiments 3,4 to happen
+	     you should go to the machine U1 and run
+		 > python U1.py U3
+		 or
+		 > python U1.py T3
+		 
+		You may want to redirect standard output of routers and servers
+		because the way the packet loss is computed requires identifying
+		the missing packets. That is only possible if you track all the
+		arriving packets to routers and servers.
+		
+		Examples of outputs can be seen in output folder.
+	
