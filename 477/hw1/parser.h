@@ -10,8 +10,53 @@ namespace parser
     //so that you are not enforced to adopt any style or design.
     struct Vec3f
     {
+
         float x, y, z;
+
+        inline Vec3f operator-() const{
+        	return Vec3f{-x, -y, -z};
+        }
+
+        inline Vec3f operator-(const Vec3f& rhs) const{
+        	return Vec3f{x - rhs.x, y - rhs.y, z - rhs.z};
+        }
+
+        inline Vec3f operator+(const Vec3f& rhs) const{
+        	return Vec3f{x + rhs.x, y + rhs.y, z + rhs.z};
+        }
+        inline float operator*(const Vec3f& rhs) const{
+        	return x * rhs.x +  y * rhs.y + z * rhs.z;
+        }
+        inline Vec3f operator*(const float& rhs) const{
+        	return Vec3f{rhs*x, rhs*y, rhs*z};
+        }
+
+        inline Vec3f crossProduct(const Vec3f&rhs) const{
+        	return Vec3f{y*rhs.z  - z*rhs.y, -x*rhs.z + z*rhs.x, x*rhs.y - y*rhs.x};
+        }
+
+        inline float distance(const Vec3f&rhs) const{
+        	return (x - rhs.x)*(x - rhs.x) + (y - rhs.y)*(y - rhs.y) + (z - rhs.z)*(z - rhs.z);
+        }
+
+        inline Vec3f operator+(const float& rhs){
+        	return Vec3f{x + rhs, y + rhs, z + rhs};
+        }
+
+        inline Vec3f operator/ (const float& rhs){
+        	return Vec3f{x/rhs, y/rhs, z/rhs};
+        }
+
+        inline bool operator!=(const Vec3f& rhs){
+        	return x != rhs.x || y != rhs.y || z != rhs.z;
+        }
+
     };
+
+
+
+
+
 
     struct Vec3i
     {
